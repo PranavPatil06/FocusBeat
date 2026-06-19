@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- FocusBeat - Pomodoro Timer + Ambient Sounds App -->
+
+<head>
+  <meta charset="UTF-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>FocusBeat - Focus Timer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+
+<body>
+
+  <div class="sidebar" id="sidebar">
+
+    <div class="sidebar-logo">
+      <div class="logo-icon">⏱</div>
+      <span class="logo-text">FocusBeat</span>
+    </div>
+
+    <nav class="sidebar-menu">
+      <!-- data-page tells JavaScript which page to show when clicked -->
+      <button class="menu-btn active" data-page="timer-page">
+        <span class="menu-icon">⏱</span>
+        <span class="menu-label">Timer</span>
+      </button>
+
+      <button class="menu-btn" data-page="sounds-page">
+        <span class="menu-icon">🎵</span>
+        <span class="menu-label">Sounds</span>
+      </button>
+
+      <button class="menu-btn" data-page="tasks-page">
+        <span class="menu-icon">✅</span>
+        <span class="menu-label">Tasks</span>
+      </button>
+
+      <button class="menu-btn" data-page="analytics-page">
+        <span class="menu-icon">📊</span>
+        <span class="menu-label">Analytics</span>
+      </button>
+    </nav>
+
+    <!-- Theme toggle button at the bottom of sidebar -->
+    <div class="sidebar-bottom">
+      <button class="theme-btn" id="themeButton">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span>Dark Mode</span>
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- mobile phones -->
+  <div class="topbar" id="topbar">
+
+    <button class="hamburger-btn" id="hamburgerBtn">☰</button>
+    
+    <span class="topbar-title">FocusBeat</span>
+
+    <button class="theme-btn-small" id="themeButtonMobile">🌙</button>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+  <main class="main-area" id="mainArea">
+
+
+    <!-- PAGE 1: TIMER PAGE -->
+    <div class="page active" id="timer-page">
+
+
+      <div class="page-header">
+        <h1>Focus Timer</h1>
+        <p>One session at a time. Stay locked in.</p>
+      </div>
+
+      <div class="timer-wrapper">
+
+        <div class="card timer-card">
+
+          <div class="mode-buttons">
+            <button class="mode-btn active" data-mode="focus">Focus (25m)</button>
+            <button class="mode-btn" data-mode="short">Short Break (5m)</button>
+            <button class="mode-btn" data-mode="long">Long Break (15m)</button>
+          </div>
+
+          <div class="ring-container">
+
+            <svg class="timer-svg" viewBox="0 0 220 220">
+              <circle class="ring-background" cx="110" cy="110" r="96" />
+              <circle class="ring-progress" cx="110" cy="110" r="96" id="progressRing" />
+            </svg>
+
+            <div class="timer-center">
+              <div class="timer-number" id="timerDisplay">25:00</div>
+              <div class="timer-mode-text" id="timerModeText">Focus Time</div>
+            </div>
+          </div>
+
+          <div class="timer-buttons">
+            <button class="icon-btn" id="resetButton" title="Reset timer">↺</button>
+
+            <button class="start-btn" id="startButton">▶ Start</button>
+
+            <button class="icon-btn" id="skipButton" title="Skip to next">⏭</button>
+          </div>
+
+          <div class="session-dots" id="sessionDots">
+          </div>
+
+        </div>
+
+
+        <div class="stats-column">
+
+          <!-- Score Card -->
+          <div class="card score-card">
+            <div class="score-top-row">
+              <span class="score-label-text">Focus Score</span>
+              <span class="level-badge" id="levelBadge">Beginner</span>
+            </div>
+            <div class="score-number" id="scoreNumber">0</div>
+            <div class="progress-bar-track">
+              <div class="progress-bar-fill" id="scoreProgressBar" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <div class="card streak-card">
+            <div class="streak-fire" id="streakFire">🔥</div>
+
+            <div class="streak-numbers">
+              <div class="streak-count" id="streakCount">0</div>
+              <div class="streak-count-label">day streak</div>
+            </div>
+
+            <div class="streak-best">Best ever: <strong id="streakBest">0</strong> days</div>
+            <div class="streak-message" id="streakMessage">Start your first session!</div>
+          </div>
+
+          <div class="card today-card">
+            <div class="today-title">Today's Progress</div>
+
+            <div class="today-stats-row">
+              <div class="today-stat-box">
+                <div class="today-stat-number" id="todaySessionCount">0</div>
+                <div class="today-stat-label">Sessions</div>
+              </div>
+              <div class="today-stat-box">
+                <div class="today-stat-number" id="todayMinuteCount">0</div>
+                <div class="today-stat-label">Minutes</div>
+              </div>
+              <div class="today-stat-box">
+                <div class="today-stat-number" id="allTimeSessionCount">0</div>
+                <div class="today-stat-label">All Time</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PAGE 2: SOUNDS PAGE -->
+    <div class="page" id="sounds-page">
+
+      <div class="page-header">
+        <h1>Ambient Sounds</h1>
+        <p>Pick a sound to help you focus. Only one plays at a time.</p>
+      </div>
+
+      <div class="sounds-grid" id="soundsGrid"></div>
+
+      <div class="card volume-card">
+        <label class="volume-row" for="masterVolumeSlider">
+          <span>🔊 Master Volume</span>
+          <input type="range" id="masterVolumeSlider" min="0" max="100" value="70" />
+          <span id="volumePercentText">70%</span>
+        </label>
+      </div>
+
+    </div>
+
+
+    <!-- PAGE 3: TASKS PAGE -->
+    <div class="page" id="tasks-page">
+
+      <div class="page-header">
+        <h1>Tasks</h1>
+        <p>What do you need to get done today?</p>
+      </div>
+
+      <div class="card add-task-card">
+        <div class="add-task-row">
+          <input
+            type="text"
+            id="newTaskInput"
+            class="task-text-input"
+            placeholder="Type a task and press Enter or click Add..."
+            maxlength="200"
+          />
+          <button class="add-task-btn" id="addTaskButton">+ Add</button>
+        </div>
+      </div>
+
+      <div class="task-controls-bar">
+
+        <div class="filter-row">
+          <button class="filter-btn active" data-filter="all">
+            All <span class="filter-number" id="countAll">0</span>
+          </button>
+          <button class="filter-btn" data-filter="active">
+            Active <span class="filter-number" id="countActive">0</span>
+          </button>
+          <button class="filter-btn" data-filter="completed">
+            Done <span class="filter-number" id="countDone">0</span>
+          </button>
+        </div>
+
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="search" id="taskSearchInput" placeholder="Search tasks..." />
+        </div>
+
+      </div>
+
+      <div class="task-list" id="taskList"></div>
+
+      <div class="empty-message hidden" id="noTasksMessage">
+        <div class="empty-icon">📋</div>
+        <p>No tasks here. Add one above!</p>
+      </div>
+
+    </div>
+
+
+    <!-- PAGE 4: ANALYTICS PAGE -->
+    <div class="page" id="analytics-page">
+
+      <div class="page-header">
+        <h1>Analytics</h1>
+        <p>See how you've been doing over time.</p>
+      </div>
+
+      <div class="summary-grid">
+        <div class="card summary-box">
+          <div class="summary-emoji">⏱</div>
+          <div class="summary-value" id="analyticsTime">0m</div>
+          <div class="summary-label">Total Focus Time</div>
+        </div>
+        <div class="card summary-box">
+          <div class="summary-emoji">🎯</div>
+          <div class="summary-value" id="analyticsSessions">0</div>
+          <div class="summary-label">Sessions Done</div>
+        </div>
+        <div class="card summary-box">
+          <div class="summary-emoji">✅</div>
+          <div class="summary-value" id="analyticsTasks">0</div>
+          <div class="summary-label">Tasks Completed</div>
+        </div>
+        <div class="card summary-box">
+          <div class="summary-emoji">🔥</div>
+          <div class="summary-value" id="analyticsStreak">0</div>
+          <div class="summary-label">Day Streak</div>
+        </div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="chart-title-row">
+          <h2>This Week</h2>
+          <span class="chart-subtitle">Sessions per day</span>
+        </div>
+        <div class="bar-chart" id="weeklyBarChart"></div>
+      </div>
+
+      <div class="card chart-card">
+        <div class="chart-title-row">
+          <h2>Last 28 Days</h2>
+          <span class="chart-subtitle">Activity heatmap</span>
+        </div>
+        <div class="heatmap-grid" id="activityHeatmap"></div>
+        <div class="heatmap-legend">
+          <span>Less</span>
+          <div class="legend-square level-0"></div>
+          <div class="legend-square level-1"></div>
+          <div class="legend-square level-2"></div>
+          <div class="legend-square level-3"></div>
+          <div class="legend-square level-4"></div>
+          <span>More</span>
+        </div>
+      </div>
+
+      <div class="card score-breakdown-card">
+        <h2>Your Productivity Score</h2>
+        <div class="big-score-number" id="analyticsBigScore">0</div>
+        <div class="big-score-level" id="analyticsLevel">Beginner</div>
+
+        <div class="score-formula">
+          <div class="formula-row">
+            <span>Sessions completed × 10</span>
+            <span class="formula-points" id="formulaSessions">+0</span>
+          </div>
+          <div class="formula-row">
+            <span>Tasks completed × 5</span>
+            <span class="formula-points" id="formulaTasks">+0</span>
+          </div>
+          <div class="formula-row">
+            <span>Current streak × 20</span>
+            <span class="formula-points" id="formulaStreak">+0</span>
+          </div>
+        </div>
+
+        <div class="score-bar-track">
+          <div class="score-bar-fill" id="analyticsScoreBar" style="width: 0%"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </main>
+
+
+  <!-- POPUPS AND OVERLAYS -->
+
+  <div class="modal-overlay hidden" id="editModalOverlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Edit Task</h3>
+        <button class="modal-close-btn" id="closeEditModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" id="editTaskInput" class="task-text-input" placeholder="Edit your task..." />
+      </div>
+      <div class="modal-footer">
+        <button class="cancel-btn" id="cancelEditBtn">Cancel</button>
+        <button class="save-btn" id="saveEditBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="completion-popup hidden" id="completionPopup">
+    <div class="completion-box">
+      <div class="completion-emoji" id="completionEmoji">🎉</div>
+      <h2 id="completionHeading">Session Complete!</h2>
+      <p id="completionText">Great work! Take a short break.</p>
+      <button class="start-btn" id="dismissCompletionBtn">Continue</button>
+    </div>
+  </div>
+
+  <div class="toast-area" id="toastArea"></div>
+
+
+  <!-- JAVASCRIPT FILES -->
+  <script src="js/storage.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/sounds.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
