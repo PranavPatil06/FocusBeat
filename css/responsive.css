@@ -1,0 +1,121 @@
+/* ==========================================================================
+   RESPONSIVE.CSS
+   The base styles in the other files already target small screens
+   (sidebar hidden, single column grids). These media queries layer on
+   extra structure as the viewport grows, following a mobile-first approach.
+   Breakpoints used: 576px, 768px, 992px, 1200px.
+   ========================================================================== */
+
+/* -------------------- Mobile-first defaults (below 768px) -------------------- */
+.sidebar {
+  transform: translateX(-100%);
+  top: var(--topbar-height);
+  height: calc(100vh - var(--topbar-height));
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.topbar {
+  display: flex;
+}
+
+.main-area {
+  margin-left: 0;
+  padding: calc(var(--topbar-height) + var(--space-lg)) var(--space-md) var(--space-lg);
+}
+
+.timer-wrapper {
+  grid-template-columns: 1fr;
+}
+
+.sounds-grid {
+  grid-template-columns: 1fr;
+}
+
+.summary-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.heatmap-grid {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.task-controls-bar {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.search-box input {
+  min-width: 0;
+  width: 100%;
+}
+
+/* -------------------- 576px and up: small tablets / large phones -------------------- */
+@media (min-width: 576px) {
+  .sounds-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .add-task-row {
+    flex-wrap: nowrap;
+  }
+}
+
+/* -------------------- 768px and up: tablets, sidebar becomes permanent -------------------- */
+@media (min-width: 768px) {
+  .sidebar {
+    transform: translateX(0);
+    top: 0;
+    height: 100vh;
+  }
+
+  .topbar {
+    display: none;
+  }
+
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  .main-area {
+    margin-left: var(--sidebar-width);
+    padding: var(--space-xl);
+  }
+
+  .heatmap-grid {
+    grid-template-columns: repeat(10, 1fr);
+  }
+
+  .task-controls-bar {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* -------------------- 992px and up: laptops, two column timer layout -------------------- */
+@media (min-width: 992px) {
+  .timer-wrapper {
+    grid-template-columns: 1fr 320px;
+  }
+
+  .sounds-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .heatmap-grid {
+    grid-template-columns: repeat(14, 1fr);
+  }
+}
+
+/* -------------------- 1200px and up: desktop, roomier spacing -------------------- */
+@media (min-width: 1200px) {
+  .main-area {
+    padding: var(--space-xl) var(--space-xl) var(--space-xl) calc(var(--space-xl) + var(--space-md));
+  }
+
+  .timer-wrapper {
+    grid-template-columns: 1fr 340px;
+  }
+}

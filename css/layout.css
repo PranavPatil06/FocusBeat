@@ -1,0 +1,200 @@
+/* ==========================================================================
+   LAYOUT.CSS
+   Page-level structure: sidebar navigation, topbar (mobile), main content
+   area and the grid layouts used inside each page.
+   ========================================================================== */
+
+/* -------------------- Sidebar (desktop navigation) -------------------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--sidebar-width);
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--border-color-soft);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) var(--space-md);
+  z-index: 100;
+  transition: transform var(--transition-medium), background-color var(--transition-medium);
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0 var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.logo-icon {
+  font-size: 1.2rem;
+}
+
+.logo-text {
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  flex: 1;
+}
+
+.sidebar-bottom {
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border-color-soft);
+}
+
+/* -------------------- Topbar (mobile only, hidden on desktop) -------------------- */
+.topbar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-height);
+  background-color: var(--bg-sidebar);
+  border-bottom: 1px solid var(--border-color-soft);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+  z-index: 200;
+}
+
+.topbar-title {
+  font-weight: 700;
+}
+
+.hamburger-btn,
+.theme-btn-small {
+  font-size: 1.2rem;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.hamburger-btn:hover,
+.theme-btn-small:hover {
+  background-color: var(--bg-hover);
+}
+
+/* Dark overlay shown behind the sidebar when it slides in on mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+/* -------------------- Main content area -------------------- */
+.main-area {
+  margin-left: var(--sidebar-width);
+  padding: var(--space-xl) var(--space-xl) var(--space-xl);
+  min-height: 100vh;
+}
+
+.page {
+  display: none;
+  animation: pageFadeIn var(--transition-slow);
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-header {
+  margin-bottom: var(--space-lg);
+}
+
+.page-header p {
+  margin-top: 0.2rem;
+  font-size: 0.92rem;
+}
+
+/* -------------------- Timer page layout -------------------- */
+.timer-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.stats-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* -------------------- Sounds page layout -------------------- */
+.sounds-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+/* -------------------- Tasks page layout -------------------- */
+.task-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: var(--space-md) 0;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.filter-row {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* -------------------- Analytics page layout -------------------- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.chart-card {
+  margin-bottom: var(--space-lg);
+}
+
+.chart-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.chart-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+}
