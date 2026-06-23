@@ -25,29 +25,39 @@
   <div class="sidebar" id="sidebar">
 
     <div class="sidebar-logo">
-      <div class="logo-icon">⏱</div>
-      <span class="logo-text">FocusBeat</span>
+      <div class="logo-icon">
+        <img src="assests/focusbeat-logo.png" alt="Timer Icon" width="22" height="22">
+      </div>
+      <span class="logo-text"><h1>FocusBeat</h1></span>
     </div>
 
     <nav class="sidebar-menu">
       <!-- data-page tells JavaScript which page to show when clicked -->
       <button class="menu-btn active" data-page="timer-page">
-        <span class="menu-icon">⏱</span>
+        <span class="menu-icon">
+          <img src="assests/clock.svg" alt="Timer Icon" width="20" height="20">
+        </span>
         <span class="menu-label">Timer</span>
       </button>
 
       <button class="menu-btn" data-page="sounds-page">
-        <span class="menu-icon">🎵</span>
+        <span class="menu-icon">
+          <img src="assests/sounds.svg" alt="Timer Icon" width="22" height="22">
+        </span>
         <span class="menu-label">Sounds</span>
       </button>
 
       <button class="menu-btn" data-page="tasks-page">
-        <span class="menu-icon">✅</span>
+        <span class="menu-icon">
+                    <img src="assests/tasks.svg" alt="Timer Icon" width="22" height="22">
+        </span>
         <span class="menu-label">Tasks</span>
       </button>
 
       <button class="menu-btn" data-page="analytics-page">
-        <span class="menu-icon">📊</span>
+        <span class="menu-icon">
+          <img src="assests/analytics.svg" alt="Timer Icon" width="22" height="22">
+        </span>
         <span class="menu-label">Analytics</span>
       </button>
     </nav>
@@ -55,7 +65,9 @@
     <!-- Theme toggle button at the bottom of sidebar -->
     <div class="sidebar-bottom">
       <button class="theme-btn" id="themeButton">
-        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-icon" id="themeIcon">
+          <img src="assests/dark-mode.svg" alt="Dark Mode Icon" width="25" height="25">
+        </span>
         <span>Dark Mode</span>
       </button>
     </div>
@@ -260,7 +272,9 @@
 
       <div class="summary-grid">
         <div class="card summary-box">
-          <div class="summary-emoji">⏱</div>
+          <div class="summary-emoji" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+            <img src="assests/clock.svg" alt="Timer Icon" width="22" height="22">
+          </div>
           <div class="summary-value" id="analyticsTime">0m</div>
           <div class="summary-label">Total Focus Time</div>
         </div>
@@ -270,7 +284,9 @@
           <div class="summary-label">Sessions Done</div>
         </div>
         <div class="card summary-box">
-          <div class="summary-emoji">✅</div>
+          <div class="summary-emoji" style="display: flex; justify-content: center; align-items: center; width: 100%;">
+            <img src="assests/tasks.svg" alt="Timer Icon" width="22" height="22">
+          </div>
           <div class="summary-value" id="analyticsTasks">0</div>
           <div class="summary-label">Tasks Completed</div>
         </div>
