@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.body.classList.toggle("light-theme", theme === "light");
   
   const icon = theme === "dark" 
-    ? `<img src="assests/dark-mode.svg" alt="Dark Mode Icon" width="25" height="25">` 
+    ? `<img src="assests/dark-mode-white.svg" alt="Dark Mode Icon" width="25" height="25">` 
     : `<img src="assests/dark-mode.svg" alt="Light Mode Icon" width="25" height="25">`;
   
   // 3. Use innerHTML to actually render the image, NOT textContent
